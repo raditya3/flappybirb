@@ -1,2 +1,7 @@
+# dependencies and artifacts
 node_modules/
 dist/
+
+#editor configs
+.vscode/
+.idea/
