@@ -7,7 +7,13 @@
     "dev": "webpack serve --open",
     "build": "webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
-    "test": "jest"
+    "test": "jest",
+    "lint": "prettier --write ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": ""
+    }
   },
   "keywords": [],
   "author": "",
@@ -16,7 +22,9 @@
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.169",
     "cross-env": "^7.0.3",
+    "husky": "^7.0.4",
     "jest": "^27.1.0",
+    "prettier": "^2.5.1",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.1.2",
     "typescript": "^4.4.2",
