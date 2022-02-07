@@ -8,11 +8,12 @@
     "build": "webpack",
     "build:prod": "cross-env NODE_ENV=production webpack",
     "test": "jest",
-    "lint": "prettier --write ."
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "husky": {
     "hooks": {
-      "pre-commit": ""
+      "pre-commit": "npm run format"
     }
   },
   "keywords": [],
