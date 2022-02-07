@@ -68,9 +68,9 @@ class NeuroEvolution {
         const fittestPerceptron = this.population.sort((a,b) => {
             return b.getScore() - a.getScore();
           })[0];
-          const weights = JSON.stringify(fittestPerceptron.weights);
+          const weights = JSON.stringify(fittestPerceptron.getWeights());
           localStorage.setItem("weights",weights);
-          localStorage.setItem("bias",fittestPerceptron.bias.toString());
+          localStorage.setItem("bias",fittestPerceptron.getBias().toString());
     }
 }
 

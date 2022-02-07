@@ -1,13 +1,14 @@
 
-import cloneDeep from 'lodash/cloneDeep';
+import {cloneDeep} from "lodash";
+
 function sigmoid(t : number) {
     return 1/(1+Math.pow(Math.E, -t));
 }
 class Perceptron {
     layerConf : number[]
-    weights : number[][][] = [];
-    bias = 0;
-    score = 0;
+    private weights : number[][][] = [];
+    private bias = 0;
+    private score = 0;
     constructor(json : {
         layerConf : number[]
     }) {
@@ -26,6 +27,10 @@ class Perceptron {
         }
     }
 
+    getWeights = () => {
+        return this.weights;
+    }
+
     setWeights = (weigths : string, bias : number) => {
         this.weights = JSON.parse(weigths);
         this.bias=bias;
@@ -40,6 +45,7 @@ class Perceptron {
     }
 
     getClone = () => {
+        debugger;
         const nn = new Perceptron({ layerConf : this.layerConf});
         nn.weights = cloneDeep(this.weights);
         return nn;
@@ -47,7 +53,6 @@ class Perceptron {
 
     calcLayer = (layer : number, input : number[]) : number[] => {
         if(layer>=this.weights.length) return input;
-
         const layerOutput = []
         for(let neuron=0;neuron<this.weights[layer].length;neuron++){
             let sm = 0;
@@ -66,6 +71,11 @@ class Perceptron {
         return this.calcLayer(0,input);
     }
 
+    /**
+     *  mutates a perceptron
+     *  @Param {number} mutagen - value between 0 and 1 indicating chances of mutation per synapse
+     *  @Param {number} mutationSeverity - value between 0 and 1 indicating mutation severity of synapse
+     */
     mutate = (mutagen : number, mutationSeverity: number) => {
         for(let layer = 1;layer<this.weights.length;layer++){
             for(let neuron = 0; neuron< this.weights[layer].length;neuron++){
@@ -81,6 +91,9 @@ class Perceptron {
         }
     }
 
+    getBias = () => {
+        return this.bias;
+    }
 }
 
 export default Perceptron;
